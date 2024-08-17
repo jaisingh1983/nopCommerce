@@ -1,0 +1,80 @@
+﻿@model IList<Nop.Web.Models.Books.BooksModel>
+
+@{
+    Layout = "_ColumnsTwo";
+
+    // Title
+    Html.AddTitleParts(T("Web.Books.List").Text);
+    // Page class
+    Html.AppendPageCssClassParts("html-books-list-page");
+}
+
+
+<div class="page account-page books-list-page">
+    <div class="page-title">
+        <h1>@T("Web.Books.List")</h1>
+    </div>
+    <div class="page-body">
+        <nop-antiforgery-token />
+        @if (Model.Count > 0)
+        {
+            <div class="books-list">
+                @for (var i = 0; i < Model.Count; i++)
+                {
+                    var book = Model[i];
+                    <div class="section book-item">
+                        <div class="title">
+                            <strong>@book.Name</strong>
+                        </div>
+                        <ul class="info">
+                            <li class="name">
+                                @book.Name
+                            </li>
+                            <li class="created-on">
+                                <label>@T("Web.Books.Fields.CreatedOn"):</label>
+                                @book.CreatedOn.ToString("yyyy-MM-dd")
+                            </li>
+                        </ul>
+                        <div class="buttons">
+                            <input type="button" class="button-2 edit-book-button" onclick="location.href = '@(Url.RouteUrl("EditBook", new { id = book.Id }))'" value="@T("Common.Edit")" />
+                            <input type="button" class="button-2 delete-book-button" onclick="deleteBook(@(book.Id))" value="@T("Common.Delete")" />
+                        </div>
+                    </div>
+                }
+            </div>
+            <script asp-location="Footer">
+                function deleteBook(bookId) {
+                    if (confirm('@T("Common.AreYouSure")')) {
+                        var postData = {
+                            id: bookId
+                        };
+                        addAntiForgeryToken(postData);
+
+                        $.ajax({
+                            cache: false,
+                            type: "POST",
+                            url: "@Url.Action("Delete", "Books")",
+                            data: postData,
+                            dataType: "json",
+                            success: function (data, textStatus, jqXHR) {
+                                location.href = data.redirect;
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                alert('Failed to delete');
+                            }
+                        });
+                    }
+                }
+            </script>
+        }
+        else
+        {
+            <div class="no-data">
+                @T("Web.Books.NoBooks")
+            </div>
+        }
+        <div class="add-button">
+            <input type="button" class="button-1 add-book-button" onclick="location.href='@Url.RouteUrl("CreateBook")'" value="@T("Common.AddNew")" />
+        </div>
+    </div>
+</div>

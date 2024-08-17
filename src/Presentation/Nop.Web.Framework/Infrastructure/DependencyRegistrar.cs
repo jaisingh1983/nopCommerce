@@ -5,10 +5,12 @@ using System.Reflection;
 using Autofac;
 using Autofac.Builder;
 using Autofac.Core;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Configuration;
+using Nop.Core.Domain.Book;
 using Nop.Core.Domain.Stores;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
@@ -18,6 +20,7 @@ using Nop.Services.Affiliates;
 using Nop.Services.Authentication;
 using Nop.Services.Authentication.External;
 using Nop.Services.Blogs;
+using Nop.Services.Book;
 using Nop.Services.Caching;
 using Nop.Services.Catalog;
 using Nop.Services.Cms;
@@ -115,8 +118,8 @@ namespace Nop.Web.Framework.Infrastructure
                     .SingleInstance();
             }
 
-            //work context
-            builder.RegisterType<WebWorkContext>().As<IWorkContext>().InstancePerLifetimeScope();
+        //work context
+        builder.RegisterType<WebWorkContext>().As<IWorkContext>().InstancePerLifetimeScope();
 
             //store context
             builder.RegisterType<WebStoreContext>().As<IStoreContext>().InstancePerLifetimeScope();
@@ -242,7 +245,7 @@ namespace Nop.Web.Framework.Infrastructure
             builder.RegisterType<PickupPluginManager>().As<IPickupPluginManager>().InstancePerLifetimeScope();
             builder.RegisterType<ShippingPluginManager>().As<IShippingPluginManager>().InstancePerLifetimeScope();
             builder.RegisterType<TaxPluginManager>().As<ITaxPluginManager>().InstancePerLifetimeScope();
-
+            builder.RegisterType<BookService>().As<IBookService>().InstancePerLifetimeScope();
             builder.RegisterType<ActionContextAccessor>().As<IActionContextAccessor>().InstancePerLifetimeScope();
 
             //register all settings
@@ -281,6 +284,8 @@ namespace Nop.Web.Framework.Infrastructure
                     }, typeof(IConsumer<>)))
                     .InstancePerLifetimeScope();
             }
+
+            
         }
 
         /// <summary>

@@ -1,0 +1,32 @@
+﻿@model Nop.Web.Models.Books.BooksModel
+
+@{
+    Layout = "_ColumnsTwo";
+
+    // Title
+    Html.AddTitleParts(T("Web.Books.Edit").Text);
+    // Page class
+    Html.AppendPageCssClassParts("html-book-edit-page");
+}
+
+
+<form asp-route="EditBook" method="post">
+    <div class="page account-page book-edit-page">
+        <div class="page-title">
+            <h1>@T("Web.Books.Edit")</h1>
+        </div>
+        <div class="page-body">
+            <div asp-validation-summary="ModelOnly" class="message-error"></div>
+
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="buttons">
+                <input type="submit" class="button-1 save-book-button" value="@T("Common.Save")" />
+            </div>
+        </div>
+    </div>
+</form>

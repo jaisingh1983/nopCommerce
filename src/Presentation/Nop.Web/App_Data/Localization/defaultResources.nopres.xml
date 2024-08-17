@@ -18438,4 +18438,43 @@
   <LocaleResource Name="Wishlist.YourWishlistURL">
     <Value>Your wishlist URL for sharing</Value>
   </LocaleResource>
+    <LocaleResource Name="Web.Books.Fields.Name.Required">
+        <Value>Enter book name</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Books.Fields.CreatedOn.Required">
+        <Value>Enter created date</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Books.Fields.Name">
+        <Value>Name</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Books.Fields.CreatedOn">
+        <Value>Created On</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Books.List">
+        <Value>Books List</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Books.Create">
+        <Value>Create Book</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Books.Edit">
+        <Value>Edit Book</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Books.CreateNew">
+        <Value>Create New Book</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Common.Save">
+        <Value>Save</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Common.BackToList">
+        <Value>Back to List</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Common.Edit">
+        <Value>Edit</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Common.Delete">
+        <Value>Delete</Value>
+    </LocaleResource>
+    <LocaleResource Name="Web.Common.AreYouSure">
+        <Value>Are you sure?</Value>
+    </LocaleResource>
 </Language>
